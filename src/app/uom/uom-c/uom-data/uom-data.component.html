@@ -1,0 +1,23 @@
+<!-- <h1 style="color: red;">{{result | json}}</h1> -->
+<br>
+<div class="container">
+    <table class="table table-bordered table-sm">
+        <thead class="black white-text">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">UOMTYPE</th>
+            <th scope="col">UOM MODEL</th>
+            <th scope="col">DESCRIPTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let x of result">
+            <td>{{x.id}}</td>
+            <td>{{x.uomType}}</td>
+            <td>{{x.uomModel}}</td>
+            <td>{{x.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+     
+</div>
