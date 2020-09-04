@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-center text-white">
+            <h2>UOM DETAILS</h2>
+        </div>
+        <div class="card-body">
+
+           
+           
+
+
+            
+           
+<hr/>
+<div class="form-group row">
+    <div class="col-4"></div>
+    <div class="col-4">
+<div *ngIf="uom">
+  <div>
+    <label><b>UOM ID: </b></label> {{uom.id}}
+  </div>
+  <div>
+    <label><b>MODEL: </b></label> {{uom.uomModel}}
+  </div>
+  <div>
+    <label><b>TYPE: </b></label> {{uom.uomType}}
+  </div>  
+  <div>
+    <label><b>DESCRIPTION: </b></label> {{uom.description}}
+  </div> 
+</div>
+<div class="col-4"></div>
+</div>
+</div>
+
+<br>
+<br>
+</div>
+</div>
+<!-- <button (click)="list()" class="btn btn-primary">Back to Employee List</button><br> -->

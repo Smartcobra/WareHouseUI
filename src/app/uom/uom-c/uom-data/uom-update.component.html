@@ -1,0 +1,66 @@
+<!-- <h1 style="color: red;">{{result | json}}</h1> -->
+<div class="container">
+  <div class="card">
+      <div class="card-header text-center purple lighten-1">
+          <h3>WELCOME TO UOM EDIT</h3>
+      </div>
+  <div class="card-body">
+    <div [hidden]="submitted">
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group row">
+      <div class="col-2">
+          <label for="UomType"> Uom Type</label>
+      </div>
+      <div class="col-4">
+          <select class="form-control" id="uomType" name="uomType" required [(ngModel)]="uom.uomType">
+              <option value="">--NA--</option>
+              <option value="PACKING">PACKING</option>
+              <option value="NoPACKING">NO PACKING</option>
+          </select>
+      </div>
+      <div class="col-4">
+          <span id="uomTypeError"></span>
+      </div>
+  </div>
+  <!--ROW #2  -->
+  <br>
+  <div class="form-group row">
+      <div class="col-2">
+          <label for="uomModel">Uom Model</label>
+      </div>
+      <div class="col-4">
+          <textarea class="form-control" id="uomModel" name="uomModel" required [(ngModel)]="uom.uomModel"></textarea>
+      </div>
+      <div class="col-4">
+          <span id="uomModelError"></span>
+      </div>
+  </div>
+
+  <!--ROW #3  -->
+  <div class="form-group row">
+      <div class="col-2">
+          <label for="description">Description</label>
+      </div>
+      <div class="col-4">
+          <textarea class="form-control" id="description" name="description" required [(ngModel)]="uom.description"></textarea>
+      </div>
+      <div class="col-4">
+          <span id="descriptionError"></span>
+      </div>
+  </div>
+  <!--ROW #4  -->
+  <div class="form-group row">
+      <div class="col-2">
+
+      </div>
+      <div class="col-4">
+          <input type="submit" class="ui-button-icon-primary purple lighten-1" value="Update Uom">
+      </div>
+  </div>
+</form>
+</div>
+<div [hidden]="!submitted">
+    <h4>You Updated successfully!</h4>
+    <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+  </div>
+  </div>

@@ -1,13 +1,19 @@
 <!-- <h1 style="color: red;">{{result | json}}</h1> -->
 <br>
+ 
 <div class="container">
-    <table class="table table-bordered table-sm">
+  <button (click)="exportToExcel()" class="btn  purple lighten-1">Export To Excel</button> |
+  <button (click)="downloadPDF()" class="btn  red light-gray" >Download PDF</button>
+
+  <div class="container" id="content" #content>  
+    <table class="table table-bordered table-sm" id="excel-table">
         <thead class="black white-text">
           <tr>
             <th scope="col">#</th>
             <th scope="col">UOMTYPE</th>
             <th scope="col">UOM MODEL</th>
             <th scope="col">DESCRIPTION</th>
+            <th colspan="20">OPERATION</th>
           </tr>
         </thead>
         <tbody>
@@ -16,8 +22,18 @@
             <td>{{x.uomType}}</td>
             <td>{{x.uomModel}}</td>
             <td>{{x.description}}</td>
+
+            <td><button (click)="deleteUOM(x.id)" class="btn purple lighten-1">Delete</button></td>
+            <td> <a class="btn blue light-gray">
+              <span [routerLink]="['view',(x.id)]">View</span></a></td>
+            <td> <a class="btn btn-info">
+              <span [routerLink]="['update',(x.id)]">Update</span></a></td>
+           
+           
           </tr>
         </tbody>
       </table>
-     
+  </div>
 </div>
+<!-- <app-uom-update></app-uom-update> -->
+<router-outlet></router-outlet>
