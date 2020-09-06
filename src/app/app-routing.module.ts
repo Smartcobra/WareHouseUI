@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UomRegisterComponent } from './uom/uom-c/uom-register/uom-register.component';
+
 
 //const routes: Routes = [ {path:"uom",loadChildren:"./uom/uom.module#UomModule"}];
 //
-const routes: Routes = [ {path:"uom",
-loadChildren: () => import('src/app/uom/uom.module').then(m => m.UomModule)}
+const routes: Routes = [ 
+  {path:"uom",
+loadChildren: () => import('src/app/uom/uom.module').then(m => m.UomModule)},
+{path:"shipmenttype",
+loadChildren: () => import('src/app/shipmenttype/shipmenttype.module').then(s => s.ShipmenttypeModule)}
 
 ];
 

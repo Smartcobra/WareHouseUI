@@ -1,0 +1,107 @@
+<!-- <h1 style="color: red;">{{result | json}}</h1> -->
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center purple lighten-1">
+            <h3>WELCOME TO SHIPMENTTYPE REGISTER</h3>
+        </div>
+        <div class="card-body">
+<div [hidden]="submitted">
+  <form (ngSubmit)="onSubmit()">
+
+
+    <div class="form-group row">
+        <div class="col-4">
+            <label for="shipmentMode">Shipment Mode</label>
+        </div>
+        <div class="col-4">
+            <select class="form-control" id="shipmentMode" name="shipmentMode" required [(ngModel)]="shipmenttype.shipmentMode">
+                <option value="">-SELECT-</option>
+                <option value="Air">Air</option>
+                <option value="Truck">Truck</option>
+                <option value="Ship">Ship</option>
+                <option value="Train">Train</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <span id="shipmentModeError"></span>
+        </div>
+    </div>
+    <!--ROW #2  -->
+    <br>
+    <div class="form-group row">
+        <div class="col-4">
+            <label for="shipmentCode">Shipment Code</label>
+        </div>
+        <div class="col-4">
+            <textarea class="form-control" id="shipmentCode" name="shipmentCode" required [(ngModel)]="shipmenttype.shipmentCode"></textarea>
+        </div>
+        <div class="col-4">
+            <span id="shipmentCodeError"></span>
+        </div>
+    </div>
+
+    <!--ROW #3  -->
+    <div class="form-group row">
+        <div class="col-4">
+            <label for="shipmentGrade">Shipment Grades</label>
+        </div>
+        <div class="col-4">
+            <input type="radio" id="shipmentGradeA" name="shipmentGradeA" required [(ngModel)]="shipmenttype.shipmentGrade" value="A" />A
+            <input type="radio" id="shipmentGradeB" name="shipmentGradeB" required [(ngModel)]="shipmenttype.shipmentGrade" value="B" />B
+            <input type="radio" id="shipmentGradeC" name="shipmentGradeC" required [(ngModel)]="shipmenttype.shipmentGrade" value="C" />C
+        </div>
+        <div class="col-4">
+            <span id="shipmentGradeError"></span>
+        </div>
+    </div>
+
+
+
+     <!--ROW #4  -->
+    <div class="form-group row">
+        <div class="col-4">
+            <label for="enableShipment">Enable Shipment</label>
+        </div>
+        <div class="col-4">
+            <select class="form-control" id="enableShipment" name="enableShipment" required [(ngModel)]="shipmenttype.enableShipment">
+                <option value="">-SELECT-</option>
+				<option value="Yes">Yes</option>
+				<option value="No">No</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <span id="enableShipmentError"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-4">
+            <label for="description">Description</label>
+        </div>
+        <div class="col-4">
+            <textarea class="form-control" id="description" name="description" required [(ngModel)]="shipmenttype.description"></textarea>
+        </div>
+        <div class="col-4">
+            <span id="descriptionError"></span>
+        </div>
+    </div>
+    <!--ROW #4  -->
+    <div class="form-group row">
+        <div class="col-4">
+
+        </div>
+        <div class="col-4">
+            <input type="submit" class="ui-button-icon-primary purple lighten-1" value="Create ShipmentType">
+        </div>
+    </div>
+
+
+  </form>
+</div>
+</div>
+    </div>
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
+</div>

@@ -1,39 +1,36 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { UomDataService } from './uom-data.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {ShipmenttypedataService} from './shipmenttypedata.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as xlsx from 'xlsx';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
-import { Router } from '@angular/router';
-
-
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
-  selector: 'app-uom-data',
-  templateUrl: './uom-data.component.html',
-  styleUrls: ['./uom-data.component.scss']
- /// providers:[UomUpdateComponent ]
+  selector: 'app-shipmenttypedata',
+  templateUrl: './shipmenttypedata.component.html',
+  styleUrls: ['./shipmenttypedata.component.scss']
 })
-export class UomDataComponent implements OnInit {
-  fileName = 'UomData.xlsx';
-  pdffileName = 'UomData.pdf';
+export class ShipmenttypedataComponent implements OnInit {
+
+  fileName = 'ShipmentTypeData.xlsx';
+  pdffileName = 'ShipmentTypeData.pdf';
   public element: any[] = [];
   public rows = [];
 
-  constructor(private service: UomDataService ,private router: Router
-    ) { }
+  constructor(private service: ShipmenttypedataService ,
+    private router: Router) { }
+    public result: any;
 
-  public result: any;
- 
-  
-  ngOnInit() {
-    this.Uomlist();
+  ngOnInit(): void {
+    this.shipmenttypelist();
   }
 
-  Uomlist(){
-    this.service.getUomModuleData().subscribe((posRes) => {
+
+  shipmenttypelist(){
+    this.service.getShipmentTypeData().subscribe((posRes) => {
       this.result = posRes;
       console.log(this.result);
     }, (errRes: HttpErrorResponse) => {
@@ -44,8 +41,7 @@ export class UomDataComponent implements OnInit {
         console.log("server side error");
     });
   }
- 
- 
+
   exportToExcel(): void {
     /* table id is passed over here */
     let element = document.getElementById('excel-table');
@@ -61,11 +57,17 @@ export class UomDataComponent implements OnInit {
   }
 
   downloadPDF(): void {
-    this.rows.push(['Sl No', 'id', 'uomType', 'uomModel', 'description']);
+    this.rows.push(['Sl No', 'id', 'shipmentMode', 'shipmentCode', 'enableShipment',
+    'shipmentGrade','description'
+  ]);
 
     for (var i = 0; i < this.result.length; i++) {
       var obj = this.result[i];
-      this.rows.push(['#.' + i, obj.id, obj.uomType, obj.uomModel, obj.description]);
+      this.rows.push(
+        [
+          '#.' + i, obj.id, obj.shipmentMode, obj.shipmentCode, obj.enableShipment,obj.shipmentGrade,obj.description
+        ]
+                   );
       // var obj = this.result[i];
       // console.log(obj.id);
       // console.log(obj.uomType);
@@ -75,13 +77,13 @@ export class UomDataComponent implements OnInit {
 
     const documentDefinition = {
       content: [{
-        text: 'UOM Details',
+        text: 'Shipmenttype Details',
         style: 'sectionHeader'
       },
 
       {
         table: {
-          widths: ['*', '*', '*', '*', '*', '*'],
+          widths: ['*', '*', '*', '*', '*', '*','*','*'],
           body: this.rows
         }
       }],
@@ -96,21 +98,8 @@ export class UomDataComponent implements OnInit {
   }
 
 
-
-  //pdfMake.createPdf(documentDefinition).download();
-  ////console.log("result is "+JSON.stringify(this.result));
-  ///let someArray=JSON.stringify(this.result);
-
-
-  ///for(var i = 0; i < this.result.length; i++) {
-  ///var obj = this.result[i];
-  ///console.log(obj.id);
-  //// console.log(obj.uomType);
-  /// console.log(obj.uomModel);
-  /// console.log(obj.description);
-
-  deleteUOM(id: number) {
-    this.service.deleteUOM(id)
+  deleteShipmenttype(id: number) {
+    this.service.deleteShipmentType(id)
       .subscribe(
         data => {
           console.log(data);
@@ -121,16 +110,12 @@ export class UomDataComponent implements OnInit {
           else
               console.log("server side error");
       });
-        this.Uomlist();
+        this.shipmenttypelist();
   }
 
-  reloadData() {
-    //this.employees = this.employeeService.getEmployeesList();
-  }
 
   update(id: number){
     console.log("golsdhfdsfsd"+id)
-   /// this.update.updateUomData(id);
     this.router.navigate(['update', id]);
   }
 

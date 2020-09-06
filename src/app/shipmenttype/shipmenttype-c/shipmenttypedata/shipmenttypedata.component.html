@@ -1,0 +1,44 @@
+<!-- <h1 style="color: red;">{{result | json}}</h1> -->
+<br>
+ 
+<div class="container">
+  <button (click)="exportToExcel()" class="btn  purple lighten-1">Export To Excel</button> |
+  <button (click)="downloadPDF()" class="btn  red light-gray" >Download PDF</button>
+
+  <div class="container" id="content" #content>  
+    <table class="table table-bordered table-sm" id="excel-table">
+        <thead class="black white-text">
+          <tr>
+           
+            <th scope="col">ID</th>
+            <th scope="col">CODE</th>
+            <th scope="col">MODE</th>
+            <th scope="col">ENABLE</th>
+            <th scope="col">GRADE</th>
+            <th scope="col">DESCRIPTION</th>
+            <th colspan="20">OPERATION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let x of result">
+            <td>{{x.id}}</td>
+            <td>{{x.shipmentMode}}</td>
+            <td>{{x.shipmentCode}}</td>
+            <td>{{x.enableShipment}}</td>
+            <td>{{x.shipmentGrade}}</td>
+            <td>{{x.description}}</td>
+
+             <td><button (click)="deleteShipmenttype(x.id)" class="btn purple lighten-1">Delete</button></td>
+            <td> <a class="btn blue light-gray">
+              <span [routerLink]="['view',(x.id)]">View</span></a></td>
+            <td> <a class="btn btn-info">
+              <span [routerLink]="['update',(x.id)]">Update</span></a></td> 
+           
+           
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+<!-- <app-uom-update></app-uom-update> -->
+<router-outlet></router-outlet>

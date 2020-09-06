@@ -5,13 +5,13 @@
             <h3>WELCOME TO UOM REGISTER</h3>
         </div>
         <div class="card-body">
-<div [hidden]="submitted" style="width: 400px;">
+<div [hidden]="submitted">
   <form (ngSubmit)="onSubmit()">
     <div class="form-group row">
-        <div class="col-6">
+        <div class="col-4">
             <label for="UomType"> Uom Type</label>
         </div>
-        <div class="col-6">
+        <div class="col-4">
             <select class="form-control" id="uomType" name="uomType" required [(ngModel)]="uom.uomType">
                 <option value="">--NA--</option>
                 <option value="PACKING">PACKING</option>
@@ -25,10 +25,10 @@
     <!--ROW #2  -->
     <br>
     <div class="form-group row">
-        <div class="col-6">
+        <div class="col-4">
             <label for="uomModel">Uom Model</label>
         </div>
-        <div class="col-6">
+        <div class="col-4">
             <textarea class="form-control" id="uomModel" name="uomModel" required [(ngModel)]="uom.uomModel"></textarea>
         </div>
         <div class="col-4">
@@ -38,10 +38,10 @@
 
     <!--ROW #3  -->
     <div class="form-group row">
-        <div class="col-6">
+        <div class="col-4">
             <label for="description">Description</label>
         </div>
-        <div class="col-6">
+        <div class="col-4">
             <textarea class="form-control" id="description" name="description" required [(ngModel)]="uom.description"></textarea>
         </div>
         <div class="col-4">
@@ -50,10 +50,10 @@
     </div>
     <!--ROW #4  -->
     <div class="form-group row">
-        <div class="col-6">
+        <div class="col-4">
 
         </div>
-        <div class="col-6">
+        <div class="col-4">
             <input type="submit" class="ui-button-icon-primary purple lighten-1" value="Create Uom">
         </div>
     </div>
