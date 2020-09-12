@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-center text-white">
+            <h2>PURCHASE ORDER DETAILS</h2>
+        </div>
+        <div class="card-body">
+               
+<hr/>
+<div class="form-group row">
+    <div class="col-4"></div>
+    <div class="col-4">
+<div *ngIf="purchaseorder">
+  <div>
+    <label><b>PURCHASE ID: </b></label> {{purchaseorder.id}}
+  </div>
+  <div>
+    <label><b>ORDER CODE: </b></label> {{purchaseorder.orderCode}}
+  </div>
+  <div>
+    <label><b>REFERENCE NUMBER: </b></label> {{purchaseorder.referenceNumber}}
+  </div>  
+  <div>
+    <label><b>QUALITY CHECK: </b></label> {{purchaseorder.qualityCheck}}
+  </div>
+  <div>
+    <label><b>STATUS: </b></label> {{purchaseorder.status}}
+  </div>
+  <div>
+    <label><b>SHIPMENT CODE: </b></label> {{purchaseorder.shipmentType}}
+  </div>
+  <div>
+    <label><b>VENDOR: </b></label> {{purchaseorder.vendor}}
+  </div>
+
+  <div>
+    <label><b>DESCRIPTION: </b></label> {{purchaseorder.description}}
+  </div> 
+</div>
+<div class="col-4"></div>
+</div>
+</div>
+
+<br>
+<br>
+</div>
+</div>
+<!-- <button (click)="list()" class="btn btn-primary">Back to Employee List</button><br> -->

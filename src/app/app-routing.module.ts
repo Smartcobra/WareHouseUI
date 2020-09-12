@@ -8,7 +8,9 @@ const routes: Routes = [
   {path:"uom",
 loadChildren: () => import('src/app/uom/uom.module').then(m => m.UomModule)},
 {path:"shipmenttype",
-loadChildren: () => import('src/app/shipmenttype/shipmenttype.module').then(s => s.ShipmenttypeModule)}
+loadChildren: () => import('src/app/shipmenttype/shipmenttype.module').then(s => s.ShipmenttypeModule)},
+{path:"purchaseorder",
+loadChildren: () => import('src/app/purchaseorder/purchaseorder.module').then(p => p.PurchaseorderModule)}
 
 ];
 

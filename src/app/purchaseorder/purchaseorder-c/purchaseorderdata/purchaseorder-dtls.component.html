@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-warning text-center text-white">
+            <h2>SELECT PARTS</h2>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tr *ngIf="purchaseorders">
+                    <th>ORDER CODE</th>
+                    <th><input required [(ngModel)]="purchaseorders.orderCode" readonly="readonly"
+                            class="form-control" /></th>
+
+                    <th>STATUS</th>
+                    <th><input readonly="readonly" required [(ngModel)]="purchaseorders.status" class="form-control" />
+                    </th>
+                </tr>
+            </table>
+            
+            <div *ngIf="purchaseorders.status=='OPEN' || purchaseorders.status =='PICKING'">
+                <form (ngSubmit)="onSubmit()">
+                <h3>ADD PARTS TO CART</h3>
+
+                
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label for="part">SELECT PART</label>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control" id="part" name="part" required  [(ngModel)]="purchaseOrderDtls.part">
+                            <option value="">-SELECT-</option>
+                            <option *ngFor="let part of partcode" [value]="part.id">{{part.partCode}}</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-1">
+                        <label>QTY</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="qty" name="qty" class="form-control" required [(ngModel)]="purchaseOrderDtls.qty"/>
+                    </div>
+
+                    <div class="col-2">
+                        <input type="submit" cclass="ui-button-icon-primary purple lighten-1"  value="Add" />
+                        <!-- <input type="submit" value="Create Purchase Order"> -->
+                    </div>
+                </div>
+            </form>
+            </div>
+        
+        </div>
+   
+
+        <div class="card-footer">
+            <table class="table table-bordered table-sm">
+                <thead class="thead-dark">
+                <tr>
+                    <th>SLNO</th>
+                    <th>PART CODE</th>
+                    <th>BASE COST</th>
+                    <th>QTY</th>
+                    <th *ngIf="purchaseorders.status=='PICKING'">OPERATION</th>
+                </tr>
+            </thead>
+                <tr *ngFor="let list of purchaseorderDtlsList; let i = index">
+                    <td>{{list.id}}</td>
+                    <td>{{list.partCode}}</td>
+                    <td>{{list.baseCost}}</td>
+                    <td>{{list.qty}}</td>
+                    <td *ngIf="purchaseorders.status=='PICKING'">
+                        <button (click)="deletePurchaseDtls(list.id)" class="btn red lighten-1">REMOVE</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-group row">
+            <div class="col-6">
+        <div  *ngIf="purchaseorders.status=='PICKING'">
+            <button (click)="confirmPoOrder(purchaseorders.id)" class="btn btn-warning">CONFIRM</button>
+        </div>
+         </div>
+        </div>
+        <div *ngIf="purchaseorders.status=='ORDERED'">
+           
+                 <span hidden *ngFor="let list of purchaseorderDtlsList; let i = index">
+                    {{i}}. {{list}}
+                 </span>
+                 <b style="color:red;">TOTAL ITEMS PLACED IN ORDER :{{purchaseorderDtlsList ? purchaseorderDtlsList.length : ''}}
+            </b>
+        </div>
+    </div>
+</div>

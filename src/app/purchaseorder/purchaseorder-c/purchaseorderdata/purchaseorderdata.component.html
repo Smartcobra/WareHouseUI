@@ -1,0 +1,50 @@
+<!-- <h1 style="color: red;">{{result | json}}</h1> -->
+<br>
+ 
+<div class="container">
+  <button (click)="exportToExcel()" class="btn  purple lighten-1"><i
+    class="fas fa-file-excel"></i></button> |
+  <button (click)="downloadPDF()" class="btn  red light-gray" >
+      <i class="fas fa-file-pdf"></i></button>
+
+  <div class="container" id="content" #content>  
+    <table class="table table-bordered table-sm" id="excel-table">
+        <thead class="black white-text">
+          <tr>
+           
+            <th scope="col">ORDER ID</th>
+            <th scope="col">ORDER CODE</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">SHIPMENT CODE</th>
+            <th scope="col">VENDOR</th>
+            <th scope="col">REF NUMBER</th>
+            <th scope="col">QTY CHECK</th>
+            <th colspan="20">OPERATION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let x of result">
+            <td>{{x.id}}</td>
+            <td>{{x.orderCode}}</td>
+            <td>{{x.status}}</td>
+            <td>{{x.shipmentType}}</td>
+            <td>{{x.vendor}}</td>
+            <td>{{x.referenceNumber}}</td>
+            <td>{{x.qualityCheck}}</td>
+
+
+            <td> <a class="btn blue light-gray">
+              <span [routerLink]="['view',(x.id)]"><i class="far fa-eye"></i></span></a></td>
+            <td> <a class="btn btn-info">
+              <span [routerLink]="['update',(x.id)]"><i class="far fa-edit"></i></span></a></td> 
+              <td> <a class="btn btn-warning">
+                <span [routerLink]="['part',(x.id)]">PART</span></a></td> 
+           
+           
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+<!-- <app-uom-update></app-uom-update> -->
+<router-outlet></router-outlet>
