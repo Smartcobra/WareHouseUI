@@ -1,0 +1,83 @@
+<!-- <h1 style="color: red;">{{result | json}}</h1> -->
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center purple lighten-1">
+            <h3>WELCOME TO GRN REGISTER</h3>
+        </div>
+        <div class="card-body">
+<div [hidden]="submitted"> 
+  <form (ngSubmit)="onSubmit()">
+
+
+    <div class="form-group row">
+        <div class="col-4">
+            <label for="orderCode">Grn Code</label>
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" id="grnCode" name="grnCode" required [(ngModel)]="grn.grnCode"/>
+        </div>
+        <div class="col-4">
+            <span id="grnCodeError"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-4">
+            <label for="grnType">Grn Type</label>
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" id="grntype" name="grntype" required [(ngModel)]="grn.grnType"/>
+        </div>
+        <div class="col-4">
+            <span id="grnTypeCodeError"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-4">
+            <label for="orderCode">Order Code</label>
+        </div>
+        <div class="col-4">
+            <select class="form-control" id="orderCode" name="orderCode" required [(ngModel)]="grn.orderCode">
+                <option value="">-SELECT-</option>
+                <option *ngFor="let test of poordercode" [value]="test.id">{{test.orderCode}}</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <span id="orderCodeError"></span>
+        </div>
+    </div>
+
+    <!--ROW #2  -->
+    <br>
+    <div class="form-group row">
+        <div class="col-4">
+            <label for="description">Description</label>
+        </div>
+        <div class="col-4">
+            <textarea class="form-control" id="description" name="description" required [(ngModel)]="grn.description"></textarea>
+        </div>
+        <div class="col-4">
+            <span id="descriptionError"></span>
+        </div>
+    </div>
+    <!--ROW #4  -->
+    <div class="form-group row">
+        <div class="col-4">
+
+        </div>
+        <div class="col-4">
+            <input type="submit" class="ui-button-icon-primary purple lighten-1" value="Create Grn">
+        </div>
+    </div>
+
+
+  </form>
+</div>
+</div>
+    </div>
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div> 
+ </div> 

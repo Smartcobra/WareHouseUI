@@ -29,12 +29,14 @@ export class PurchaseorderUpdateComponent implements OnInit {
     ngOnInit() {
       this.purchaseorder = new PurchaseOrder();
       this.id = this.route.snapshot.params['id'];
+      
              console.log('from update component');
       this.service.getShipmentType(this.id)
         .subscribe(data => {
           console.log(data)
           this.purchaseorder = data;
         }, error => console.log(error));
+
         this.registerservice.getShipmentcode().subscribe((posRes) => {
           this.shipmentcode = posRes;
          console.log(this.shipmentcode);

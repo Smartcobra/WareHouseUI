@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-center text-white">
+            <h2>GRN DETAILS</h2>
+        </div>
+        <div class="card-body">
+               
+<hr/>
+<div class="form-group row">
+    <div class="col-4"></div>
+    <div class="col-4">
+<div *ngIf="grn">
+  <div>
+    <label><b>GRN ID: </b></label> {{grn.id}}
+  </div>
+  <div>
+    <label><b>GRN CODE: </b></label> {{grn.grnCode}}
+  </div>
+  <div>
+    <label><b>GRN TYPE: </b></label> {{grn.grnType}}
+  </div>  
+  <div>
+    <label><b>GRN ORDER CODE: </b></label> {{grn.orderCode}}
+  </div>
+  <div>
+    <label><b>DESCRIPTION: </b></label> {{grn.description}}
+  </div> 
+</div>
+<div class="col-4"></div>
+</div>
+</div>
+
+<br>
+<br>
+</div>
+</div>
+<!-- <button (click)="list()" class="btn btn-primary">Back to Employee List</button><br> -->

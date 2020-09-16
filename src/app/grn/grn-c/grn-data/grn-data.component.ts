@@ -1,34 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import {PurchaseorderdataService} from './purchaseorderdata.service';
+import {GrnDataService} from './grn-data.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as xlsx from 'xlsx';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
-@Component({
-  selector: 'app-purchaseorderdata',
-  templateUrl: './purchaseorderdata.component.html',
-  styleUrls: ['./purchaseorderdata.component.scss']
-})
-export class PurchaseorderdataComponent implements OnInit {
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-  fileName = 'Purchaseorder.xlsx';
-  pdffileName = 'Purchaseorder.pdf';
+@Component({
+  selector: 'app-grn-data',
+  templateUrl: './grn-data.component.html',
+  styleUrls: ['./grn-data.component.scss']
+})
+export class GrnDataComponent implements OnInit {
+
+  constructor(private service: GrnDataService,
+    private router: Router) { }
+
+
+  fileName = 'GrnData.xlsx';
+  pdffileName = 'GrnData.pdf';
+  public result: any;
   public element: any[] = [];
   public rows = [];
-
-  constructor(private service: PurchaseorderdataService ,
-    private router: Router) { }
-    public result: any;
+  error400:any;
+  errorMessage:any;
 
   ngOnInit(): void {
-    this.purchaseOrderList();
+    this.grndata();
   }
 
 
-  purchaseOrderList(){
-    this.service.getPurchaseOrderData().subscribe((posRes) => {
+  grndata(){
+    this.service.getGrnData().subscribe((posRes) => {
       this.result = posRes;
       console.log(this.result);
     }, (errRes: HttpErrorResponse) => {
@@ -39,8 +44,7 @@ export class PurchaseorderdataComponent implements OnInit {
         console.log("server side error");
     });
   }
-
-  exportToExcel(): void {
+ exportToExcel(): void {
     /* table id is passed over here */
     let element = document.getElementById('excel-table');
     const ws: xlsx.WorkSheet = xlsx.utils.table_to_sheet(element);
@@ -53,7 +57,6 @@ export class PurchaseorderdataComponent implements OnInit {
     xlsx.writeFile(wb, this.fileName);
 
   }
-
   downloadPDF(): void {
     this.rows.push(['Sl No', 'id', 'shipmentMode', 'shipmentCode', 'enableShipment',
     'shipmentGrade','description'
@@ -66,16 +69,11 @@ export class PurchaseorderdataComponent implements OnInit {
           '#.' + i, obj.id, obj.shipmentMode, obj.shipmentCode, obj.enableShipment,obj.shipmentGrade,obj.description
         ]
                    );
-      // var obj = this.result[i];
-      // console.log(obj.id);
-      // console.log(obj.uomType);
-      // console.log(obj.uomModel);
-      // console.log(obj.description);
     }
 
     const documentDefinition = {
       content: [{
-        text: 'Shipmenttype Details',
+        text: 'GRN Details',
         style: 'sectionHeader'
       },
 
@@ -96,46 +94,17 @@ export class PurchaseorderdataComponent implements OnInit {
   }
 
 
-  deleteShipmenttype(id: number) {
-    this.service.deleteShipmentType(id)
+  deleteGrn(id: number) {
+    this.errorMessage = "";
+    this.service.deleteGrnData(id)
       .subscribe(
         data => {
           console.log(data);
         },  
         (errRes:HttpErrorResponse)=>{
-          if(errRes.error instanceof Error)
-              console.log("client side error");
-          else
-              console.log("server side error");
+          this.errorMessage = errRes.error;
       });
-        this.purchaseOrderList();
+        this.grndata();
   }
 
-
-  update(id: number){
-    console.log("golsdhfdsfsd"+id)
-    this.router.navigate(['update', id]);
-  }
-
-  view(id: number){
-    console.log("golsdhfdsfsd"+id)
-    this.router.navigate(['view', id]);
-  }
-
-  generateInvoiceOrder(id: number) {
-    console.log("generateInvoiceOrder");
-    console.log("ID is>>"+id)
-    this.service.generateInvoiceOrder(id)
-      .subscribe(
-        data => {
-          console.log(data);
-        },  
-        (errRes:HttpErrorResponse)=>{
-          if(errRes.error instanceof Error)
-              console.log("client side error");
-          else
-              console.log("server side error");
-      });
-      this.purchaseOrderList();
-      }
 }

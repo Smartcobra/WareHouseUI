@@ -57,4 +57,8 @@ confirmPO(id: number): Observable<any> {
   return this.http.get(`${this.baseUrl}/confirmOrder/${id}`);
 }
 
+generateInvoiceOrder(id: number): Observable<any> {
+  return this.http.get(`${this.baseUrl}/invoiceOrder/${id}`);
+}
+
 }

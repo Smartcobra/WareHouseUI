@@ -31,7 +31,7 @@ export class ShipmentTypeUpdateComponent implements OnInit {
 
   }
 
-  updateUomData() {
+  updateShipmentData() {
     console.log("in update");
     this.service.updateShipmentType(this.id, this.shipmenttype)
       .subscribe(data => {
@@ -44,7 +44,7 @@ export class ShipmentTypeUpdateComponent implements OnInit {
  
   onSubmit() {
     this.submitted = true;
-    this.updateUomData();    
+    this.updateShipmentData();    
   }
 
   

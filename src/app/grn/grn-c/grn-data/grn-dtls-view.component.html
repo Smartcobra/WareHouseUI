@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header bg-primary text-center text-white">
+      <h2>GRN DETAILS VIEW</h2>
+    </div>
+    <!-- header end -->
+    <div class="card-body">
+      <table class="table table-hover table-bordered table-md">
+        <thead class="thead-dark">
+          <tr>
+            <th>PART CODE</th>
+            <th>BASE COST</th>
+            <th>QTY</th>
+            <th>LINE VALUE</th>
+            <th>STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- page.getContent() -->
+          <tr *ngFor="let list of result; let i = index" >
+            <td>{{list.partCode}}</td>
+            <td>{{list.baseCost}}</td>
+            <td>{{list.qty}}</td>
+            <td>{{list.lineValue}}</td>
+            <td>
+               <!-- <span>{{list.status}}</span> -->
+            <span *ngIf="list.status==null"> 
+              <!-- <button (click)="deleteGrn(x.id)" class="btn blue lighten-1"><i class="fas fa-trash-alt"></i></button> -->
+              <!-- <button (click)="sendStatus(list.id,'ACCEPT')" class="btn blue lighten-1" class="btn btn-success">ACCEPT</button>| -->
+             <a (click)="sendStatus()" [routerLink]="[]" [queryParams]="{ iddtls: list.id, status: 'ACCEPT'}" class="btn btn-success">ACCEPT</a> |
+            <a  (click)="sendStatus()" [routerLink]="[]" [queryParams]="{ iddtls: list.id, status: 'REJECT'}" class="btn btn-danger">REJECT</a>
+            </span> 
+            <span *ngIf="list.status!=null">{{list.status}}
+            </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <!-- card end -->
+</div>
