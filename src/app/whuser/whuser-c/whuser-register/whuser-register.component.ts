@@ -44,7 +44,6 @@ export class WhuserRegisterComponent implements OnInit {
     console.log("e>>>>>>>" + e)
     this.userType = e;
     this.whuser.userFor = 'OPEN';
-
     if (e == 'Vendor') {
       this.whuser.userFor = 'Purchase';
     }

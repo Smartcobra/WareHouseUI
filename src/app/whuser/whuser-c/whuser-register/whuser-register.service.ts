@@ -9,7 +9,7 @@ export class WhuserRegisterService {
 
   constructor(private http:HttpClient) { }
 
-  public createWhuserData(shipmenttype:any):Observable<any>{
-    return this.http.post("http://localhost:8762/warehouse/w/whusertype/rest/insert",shipmenttype);
+  public createWhuserData(whusertype:any):Observable<any>{
+    return this.http.post("http://localhost:8762/warehouse/w/rest/whuser/insert",whusertype);
 };
 }

@@ -10,21 +10,23 @@
         <thead class="black white-text">
           <tr>
            
-            <th scope="col">ID</th>
-            <th scope="col">USER TYPE</th>
-            <th scope="col">USER CODE</th>
-            <th scope="col">USER FOR</th>
+            <th scope="col">PART ID</th>
+            <th scope="col">PART CODE</th>
+            <th scope="col">BASE COST</th>
+            <th scope="col">BASE CURRENCY</th>
+            <th scope="col">UOM</th>
             <th colspan="20">OPERATION</th>
           </tr>
         </thead>
         <tbody>
           <tr  *ngFor="let x of result">
             <td>{{x.id}}</td>
-            <td>{{x.userType}}</td>
-            <td>{{x.userCode}}</td>
-            <td>{{x.userFor}}</td>
+            <td>{{x.partCode}}</td>
+            <td>{{x.baseCost}}</td>
+            <td>{{x.baseCurr}}</td>
+            <td>{{x.uom}}</td>
 
-             <td><button (click)="deleteWhUserType(x.id)" class="btn red lighten-1"><i class="fas fa-trash"></i></button> |
+             <td><button (click)="deletePartData(x.id)" class="btn red lighten-1"><i class="fas fa-trash"></i></button> |
             <a class="btn blue light-gray">
               <span [routerLink]="['view',(x.id)]"><i class="far fa-eye"></i></span></a>|
              <a class="btn btn-info">

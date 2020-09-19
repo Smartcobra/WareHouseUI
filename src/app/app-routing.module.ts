@@ -14,7 +14,11 @@ loadChildren: () => import('src/app/purchaseorder/purchaseorder.module').then(p 
 {path:"grn",
 loadChildren: () => import('src/app/grn/grn.module').then(g => g.GrnModule)},
 {path:"whuser",
-loadChildren: () => import('src/app/whuser/whuser.module').then(w => w.WhuserModule)}
+loadChildren: () => import('src/app/whuser/whuser.module').then(w => w.WhuserModule)},
+{path:"ordermethod",
+loadChildren: () => import('src/app/ordermethod/ordermethod.module').then(o => o.OrdermethodModule)},
+{path:"part",
+loadChildren: () => import('src/app/part/part.module').then(pa => pa.PartModule)}
 
 ];
 

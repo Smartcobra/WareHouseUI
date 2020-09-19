@@ -1,0 +1,109 @@
+<!-- <h1 style="color: red;">{{result | json}}</h1> -->
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center purple lighten-1">
+            <h3>WELCOME TO ORDERMETHOD REGISTER</h3>
+        </div>
+        <div class="card-body">
+            <div [hidden]="submitted">
+                <form (ngSubmit)="onSubmit()">
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="orderMode">Order Mode</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="radio" id="sale" name="sale" required [(ngModel)]="orderMethod.orderMode"
+                                value="vendor" />Sale
+
+                            <input type="radio" id="purchase" name="purchase" required
+                                [(ngModel)]="orderMethod.orderMode" value="purchase" />Purchase
+                        </div>
+                        <div class="col-4">
+                            <span id="orderModeError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="orderCode">Order Code</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="orderCode" name="orderCode" required
+                                [(ngModel)]="orderMethod.orderCode" />
+                        </div>
+                        <div class="col-4">
+                            <span id="orderCodeError"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="orderType">Order Type</label>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control" id="orderType" name="orderType" required
+                                [(ngModel)]="orderMethod.orderType">
+                                <option value="">-SELECT-</option>
+                                <option value="FIFO">FIFO</option>
+                                <option value="LIFO">LIFO</option>
+                                <option value="FCFO">FCFO</option>
+                                <option value="FEFO">FEFO</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <span id="orderTypeError"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="orderAccept">Order Accept</label>
+                        </div>
+                        <div class="col-4">
+                            <ul class="checkbox-items">
+                                <li *ngFor="let item of checkboxesDataList">
+                                    <input type="checkbox" [value]="item.id" [(ngModel)]="item.isChecked"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (change)="changeSelection()" />{{item.label}}
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="description">Description</label>
+                        </div>
+                        <div class="col-4">
+                            <textarea class="form-control" id="description" name="description" required
+                                [(ngModel)]="orderMethod.description"></textarea>
+                        </div>
+                        <div class="col-4">
+                            <span id="descriptionError"></span>
+                        </div>
+                    </div>
+                    <!--ROW #4  -->
+                    <div class="form-group row">
+                        <div class="col-4">
+
+                        </div>
+                        <div class="col-4">
+                            <input type="submit" class="ui-button-icon-primary purple lighten-1"
+                                value="Create Order">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div [hidden]="!submitted">
+        <h4>You submitted successfully!</h4>
+        <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+      </div>
+</div>

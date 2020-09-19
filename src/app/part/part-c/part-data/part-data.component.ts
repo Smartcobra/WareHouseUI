@@ -1,36 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import {WhuserDataService} from './whuser-data.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as xlsx from 'xlsx';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Router } from '@angular/router';
+import {PartDataService} from './part-data.service';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
-  selector: 'app-whuser-data',
-  templateUrl: './whuser-data.component.html',
-  styleUrls: ['./whuser-data.component.scss']
+  selector: 'app-part-data',
+  templateUrl: './part-data.component.html',
+  styleUrls: ['./part-data.component.scss']
 })
-export class WhuserDataComponent implements OnInit {
+export class PartDataComponent implements OnInit {
 
-  fileName = 'WhUserData.xlsx';
-  pdffileName = 'WhUserData.pdf';
+  fileName = 'PartData.xlsx';
+  pdffileName = 'PartData.pdf';
   public element: any[] = [];
   public rows = [];
   public result: any;
 
-  constructor(private service: WhuserDataService ,
+  constructor(private service: PartDataService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.WhUserListlist();
+    this.PartList();
   }
 
 
-  WhUserListlist(){
-    this.service.getWhUserData().subscribe((posRes) => {
+  PartList(){
+    this.service.gePartData().subscribe((posRes) => {
       this.result = posRes;
       console.log(this.result);
     }, (errRes: HttpErrorResponse) => {
@@ -57,34 +57,34 @@ export class WhuserDataComponent implements OnInit {
   }
 
   downloadPDF(): void {
-    this.rows.push(['Sl No', 'id', 'User Type', 'User Code', 'User For',
-    'User Mail','User Contact','User ID Type','If Other','ID Number'
+    this.rows.push(['Sl No', 'id', 'Part Code', 'Part Width', 'Part Length',
+    'Base Cost','Base Currency','Uom','Description'
   ]);
 
     for (var i = 0; i < this.result.length; i++) {
       var obj = this.result[i];
       this.rows.push(
         [
-          '#.' + i, obj.id, obj.userType, obj.userCode, obj.userFor,obj.userMail,obj.userContact,obj.userIdType,obj.ifOther,obj.idNumber
+          '#.' + i, obj.id, obj.partCode, obj.partWidth, obj.partLen,obj.partHgh,obj.baseCost,obj.baseCurr,obj.description
         ]
                    );
     }
 
     const documentDefinition = {
       content: [{
-        text: 'WhUser Details',
+        text: 'Part Details',
         style: 'sectionHeader'
       },
 
       {
         table: {
-          widths: ['*', '*', '*', '*', '*', '*','*','*','*','*'],
+          widths: ['*', '*', '*', '*', '*', '*','*','*','*'],
           body: this.rows
         }
       }],
       styles: {
         header: {
-          fontSize: 22,
+          fontSize: 10,
           bold: true
         }
       }
@@ -93,8 +93,8 @@ export class WhuserDataComponent implements OnInit {
   }
 
 
-  deleteWhUserType(id: number) {
-    this.service.deleteWhUser(id)
+  deletePartData(id: number) {
+    this.service.deletePart(id)
       .subscribe(
         data => {
           console.log(data);
@@ -105,7 +105,7 @@ export class WhuserDataComponent implements OnInit {
           else
               console.log("server side error");
       });
-        this.WhUserListlist();
+        this.PartList();
   }
 
 
@@ -118,4 +118,5 @@ export class WhuserDataComponent implements OnInit {
     console.log("golsdhfdsfsd"+id)
     this.router.navigate(['view', id]);
   }
+
 }

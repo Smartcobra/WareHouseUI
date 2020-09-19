@@ -1,0 +1,144 @@
+<!-- <h1 style="color: red;">{{result | json}}</h1> -->
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center purple lighten-1">
+            <h3>WELCOME TO PART REGISTER</h3>
+        </div>
+        <div class="card-body">
+            <div [hidden]="submitted">
+                <form (ngSubmit)="onSubmit()">
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="partcode">Part Code</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="partcode" name="partcode" required
+                                [(ngModel)]="part.partCode" />
+                        </div>
+                        <div class="col-4">
+                            <span id="partCodeError"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="partwidth">Part Width</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="partwidth" name="partwidth" required
+                                [(ngModel)]="part.partWidth" />
+                        </div>
+                        <div class="col-4">
+                            <span id="partwidthError"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="partlength">Part Length</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="partlength" name="partlength" required
+                                [(ngModel)]="part.partLen" />
+                        </div>
+                        <div class="col-4">
+                            <span id="partlengthError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="partHeight">Part Height</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="partHeight" name="partHeight" required
+                                [(ngModel)]="part.partHgh" />
+                        </div>
+                        <div class="col-4">
+                            <span id="partHeightError"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="basecost">Base Cost</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="basecost" name="basecost" required
+                                [(ngModel)]="part.baseCost" />
+                        </div>
+                        <div class="col-4">
+                            <span id="basecostError"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="basecurrency">Base Currency</label>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control" id="basecurrency" name="basecurrency" required
+                                [(ngModel)]="part.baseCurr">
+                                <option value="">-SELECT-</option>
+                                <option value="INR">INR</option>
+                                <option value="USD">USD</option>
+                                <option value="AUS">AUS</option>
+                                <option value="ERU">ERU</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <span id="baseCurrencyError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="uom">Uom</label>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control" id="uom" name="uom" required [(ngModel)]="part.uom">
+                                <option value="">-SELECT-</option>
+                                <option *ngFor="let u of uom" [value]="u.uomModel">{{u.uomModel}}</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <span id="uomError"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="description">Description</label>
+                        </div>
+                        <div class="col-4">
+                            <textarea class="form-control" id="description" name="description" required
+                                [(ngModel)]="part.description"></textarea>
+                        </div>
+                        <div class="col-4">
+                            <span id="descriptionError"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+
+                        </div>
+                        <div class="col-4">
+                            <input type="submit" class="ui-button-icon-primary purple lighten-1" value="Update Part">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div [hidden]="!submitted">
+        <h4>You updated successfully!</h4>
+    </div>
+</div>

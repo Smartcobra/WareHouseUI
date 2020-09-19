@@ -5,11 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { WhUserRoutingModule } from './whuser-routing.module';
 import { WhuserDataComponent } from './whuser-c/whuser-data/whuser-data.component';
 import { WhuserRegisterComponent } from './whuser-c/whuser-register/whuser-register.component';
-
+import { WhuserDataUpdateComponent } from './whuser-c/whuser-data/whuser-data-update.component';
+import { WhuserDataViewComponent } from './whuser-c/whuser-data/whuser-data-view.component';
 
 
 @NgModule({
-  declarations: [WhuserCComponent, WhuserDataComponent, WhuserRegisterComponent],
+  declarations: [WhuserCComponent, WhuserDataComponent, 
+    WhuserRegisterComponent,WhuserDataUpdateComponent,
+    WhuserDataViewComponent],
   imports: [
     CommonModule,FormsModule,WhUserRoutingModule
   ],

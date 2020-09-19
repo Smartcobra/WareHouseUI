@@ -15,6 +15,7 @@ export class ShipmenttyperegisterComponent implements OnInit {
 
   ngOnInit(): void { 
   }
+  
   newShipmenttype(): void {
     this.submitted = false;
     this.shipmenttype = new Shipmenttype();

@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-center text-white">
+            <h2>WHUSER DETAILS</h2>
+        </div>
+        <div class="card-body">
+               
+<hr/>
+<div class="form-group row">
+    <div class="col-4"></div>
+    <div class="col-4">
+<div *ngIf="whuser">
+  <div>
+    <label><b>WHUSER ID: </b></label> {{whuser.id}}
+  </div>
+  <div>
+    <label><b>USER CODE: </b></label> {{whuser.userCode}}
+  </div>
+  <div>
+    <label><b>USER FOR: </b></label> {{whuser.userFor}}
+  </div>  
+  <div>
+    <label><b>USER MAIL: </b></label> {{whuser.userMail}}
+  </div>
+  <div>
+    <label><b>USER CONTACT: </b></label> {{whuser.userContact}}
+  </div>
+  <div>
+    <label><b>USER ID TYPE:</b></label> {{whuser.userIdType}}
+  </div>
+  <div>
+    <label><b>IF OTHER: </b></label> {{whuser.ifOther}}
+  </div>
+
+  <div>
+    <label><b>ID NUMBER: </b></label> {{whuser.idNumber}}
+  </div> 
+</div>
+<div class="col-4"></div>
+</div>
+</div>
+
+<br>
+<br>
+</div>
+</div>
+<!-- <button (click)="list()" class="btn btn-primary">Back to Employee List</button><br> -->

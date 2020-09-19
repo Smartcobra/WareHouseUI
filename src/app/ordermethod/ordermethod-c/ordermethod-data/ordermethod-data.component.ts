@@ -1,36 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import {WhuserDataService} from './whuser-data.service';
+import {OrdermethodDataService} from './ordermethod-data.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as xlsx from 'xlsx';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Router } from '@angular/router';
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
 @Component({
-  selector: 'app-whuser-data',
-  templateUrl: './whuser-data.component.html',
-  styleUrls: ['./whuser-data.component.scss']
+  selector: 'app-ordermethod-data',
+  templateUrl: './ordermethod-data.component.html',
+  styleUrls: ['./ordermethod-data.component.scss']
 })
-export class WhuserDataComponent implements OnInit {
+export class OrdermethodDataComponent implements OnInit {
 
-  fileName = 'WhUserData.xlsx';
-  pdffileName = 'WhUserData.pdf';
+  fileName = 'OrderMethod.xlsx';
+  pdffileName = 'OrderMethod.pdf';
   public element: any[] = [];
   public rows = [];
   public result: any;
 
-  constructor(private service: WhuserDataService ,
+  constructor(private service: OrdermethodDataService ,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.WhUserListlist();
+    this.OrderMethodList();
   }
 
 
-  WhUserListlist(){
-    this.service.getWhUserData().subscribe((posRes) => {
+ OrderMethodList(){
+    this.service.getOrderMethodData().subscribe((posRes) => {
       this.result = posRes;
       console.log(this.result);
     }, (errRes: HttpErrorResponse) => {
@@ -65,20 +63,20 @@ export class WhuserDataComponent implements OnInit {
       var obj = this.result[i];
       this.rows.push(
         [
-          '#.' + i, obj.id, obj.userType, obj.userCode, obj.userFor,obj.userMail,obj.userContact,obj.userIdType,obj.ifOther,obj.idNumber
+          '#.' + i, obj.id, obj.orderMode, obj.orderCode, obj.orderType,obj.orderAcpt,obj.description
         ]
                    );
     }
 
     const documentDefinition = {
       content: [{
-        text: 'WhUser Details',
+        text: 'OrderMethod Details',
         style: 'sectionHeader'
       },
 
       {
         table: {
-          widths: ['*', '*', '*', '*', '*', '*','*','*','*','*'],
+          widths: ['*', '*', '*', '*', '*', '*','*','*'],
           body: this.rows
         }
       }],
@@ -93,8 +91,8 @@ export class WhuserDataComponent implements OnInit {
   }
 
 
-  deleteWhUserType(id: number) {
-    this.service.deleteWhUser(id)
+  deleteOrderMethod(id: number) {
+    this.service.deleteOrderMethod(id)
       .subscribe(
         data => {
           console.log(data);
@@ -105,9 +103,8 @@ export class WhuserDataComponent implements OnInit {
           else
               console.log("server side error");
       });
-        this.WhUserListlist();
+        this.OrderMethodList();
   }
-
 
   update(id: number){
     console.log("golsdhfdsfsd"+id)
