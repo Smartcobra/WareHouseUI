@@ -57,7 +57,8 @@
             class="img-fluid rounded-circle z-depth-0"></a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
           <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect *ngIf="loginService.isUserLoggedIn()" routerLink="/logout">Log out</a>
+      
         </div>
       </li>
     </ul>
@@ -66,13 +67,20 @@
 
 </mdb-navbar>
 
+<br>
+<br>
 
-<div class="form-group row">
-  <div class="col-2">
-  </div>
-  <div class="col-6">
-    <h1>WELCOME TO ABS WAREHOUSE</h1>
-  </div>
-  <div class="col-2">
+<div class="container" id="custom-div" [hidden]="!isShow">
+  <div class="form-group row">
+    <div class="col-2"></div>
+    <div class="col-7">
+      <h2>WELCOME TO ABS WAREHOUSE</h2>
+    </div>
+    <div class="col-3">
+      <button class="close" type="button" (click)="featureHide()">
+        <a><span [routerLink]="['/login']" style="color: crimson; font-weight:bold;">
+            Please Login Here</span></a>
+      </button>
+    </div>
   </div>
 </div>

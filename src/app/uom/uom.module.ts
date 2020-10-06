@@ -6,7 +6,9 @@ import { UomRegisterComponent } from './uom-c/uom-register/uom-register.componen
 import { UomDataComponent } from './uom-c/uom-data/uom-data.component';
 import { UomUpdateComponent } from './uom-c/uom-data/uom-update.component';
 import { FormsModule } from '@angular/forms';
-import{UomViewComponent} from './uom-c/uom-data/uom-view.component'
+import{UomViewComponent} from './uom-c/uom-data/uom-view.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HtppInterceptorService} from 'src/app/login/loginservice/htpp-interceptor.service';
 
  
 

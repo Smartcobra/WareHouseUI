@@ -4,13 +4,19 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './login/logout/logout.component';
+import {HtppInterceptorService} from './login/loginservice/htpp-interceptor.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  //providers: [],
+ providers: [ { provide: HTTP_INTERCEPTORS, useClass: HtppInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

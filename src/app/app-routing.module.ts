@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './login/logout/logout.component';
 
 
 //const routes: Routes = [ {path:"uom",loadChildren:"./uom/uom.module#UomModule"}];
@@ -18,7 +20,9 @@ loadChildren: () => import('src/app/whuser/whuser.module').then(w => w.WhuserMod
 {path:"ordermethod",
 loadChildren: () => import('src/app/ordermethod/ordermethod.module').then(o => o.OrdermethodModule)},
 {path:"part",
-loadChildren: () => import('src/app/part/part.module').then(pa => pa.PartModule)}
+loadChildren: () => import('src/app/part/part.module').then(pa => pa.PartModule)},
+{path:'login',component:LoginComponent},
+{path:'logout',component:LogoutComponent}
 
 ];
 
