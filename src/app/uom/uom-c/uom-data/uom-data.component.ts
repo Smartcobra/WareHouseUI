@@ -14,7 +14,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   selector: 'app-uom-data',
   templateUrl: './uom-data.component.html',
   styleUrls: ['./uom-data.component.scss']
- /// providers:[UomUpdateComponent ]
+  /// providers:[UomUpdateComponent ]
 })
 export class UomDataComponent implements OnInit {
   fileName = 'UomData.xlsx';
@@ -22,17 +22,17 @@ export class UomDataComponent implements OnInit {
   public element: any[] = [];
   public rows = [];
 
-  constructor(private service: UomDataService ,private router: Router
-    ) { }
+  constructor(private service: UomDataService, private router: Router
+  ) { }
 
   public result: any;
- 
-  
+
+
   ngOnInit() {
     this.Uomlist();
   }
 
-  Uomlist(){
+  Uomlist() {
     this.service.getUomModuleData().subscribe((posRes) => {
       this.result = posRes;
       console.log(this.result);
@@ -44,8 +44,8 @@ export class UomDataComponent implements OnInit {
         console.log("server side error");
     });
   }
- 
- 
+
+
   exportToExcel(): void {
     /* table id is passed over here */
     let element = document.getElementById('excel-table');
@@ -114,28 +114,32 @@ export class UomDataComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-        },  
-        (errRes:HttpErrorResponse)=>{
-          if(errRes.error instanceof Error)
-              console.log("client side error");
+        },
+        (errRes: HttpErrorResponse) => {
+          if (errRes.error instanceof Error)
+            console.log("client side error");
           else
-              console.log("server side error");
-      });
-        this.Uomlist();
+            console.log("server side error");
+        });
+    this.Uomlist();
   }
 
   reloadData() {
     //this.employees = this.employeeService.getEmployeesList();
   }
 
-  update(id: number){
-    console.log("golsdhfdsfsd"+id)
-   /// this.update.updateUomData(id);
+  update(id: number) {
+    console.log("golsdhfdsfsd" + id)
+    /// this.update.updateUomData(id);
     this.router.navigate(['update', id]);
   }
 
-  view(id: number){
-    console.log("golsdhfdsfsd"+id)
+  view(id: number) {
+    console.log("golsdhfdsfsd" + id)
     this.router.navigate(['view', id]);
+  }
+
+  goToPage() {
+    this.router.navigate(['/uom']);
   }
 }

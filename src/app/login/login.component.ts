@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService, User } from './loginservice/authentication.service';
-import {UomUser} from './user';
+
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
  username = '';
  password = '';
-  user:UomUser;
+ 
   invalidLogin = false
   isLoggedIn = false;
   isLoginFailed = false;
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         console.log("user name"+data)
         console.log("Password"+data)
-        this.router.navigate(['/uom'])
+        this.router.navigate(['/home'])
         this.invalidLogin = false
       },
       error => {

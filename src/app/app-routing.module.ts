@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './login/logout/logout.component';
 
@@ -21,7 +22,9 @@ loadChildren: () => import('src/app/whuser/whuser.module').then(w => w.WhuserMod
 loadChildren: () => import('src/app/ordermethod/ordermethod.module').then(o => o.OrdermethodModule)},
 {path:"part",
 loadChildren: () => import('src/app/part/part.module').then(pa => pa.PartModule)},
+{path:'home',component:HomeComponent},
 {path:'login',component:LoginComponent},
+{path:'',component:LoginComponent},
 {path:'logout',component:LogoutComponent}
 
 ];
