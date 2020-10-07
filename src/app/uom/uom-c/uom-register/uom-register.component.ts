@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UomRegisterService } from './uom-register.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Uom } from './uom-model'
-
+import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 
 @Component({
@@ -18,7 +18,7 @@ export class UomRegisterComponent implements OnInit {
   uom: Uom = new Uom();
   submitted = false;
 
-  constructor(private service: UomRegisterService) { }
+  constructor(private service: UomRegisterService,private router: Router) { }
 
   ngOnInit() { }
 
@@ -50,5 +50,8 @@ export class UomRegisterComponent implements OnInit {
 
   onSubmit() {
     this.save();
+  }
+  goToPage() {
+    this.router.navigate(['/uom']);
   }
 }
