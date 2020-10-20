@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './login/logout/logout.component';
+import { AutherrorComponent } from './autherror/autherror.component';
 
 
 //const routes: Routes = [ {path:"uom",loadChildren:"./uom/uom.module#UomModule"}];
@@ -25,7 +26,8 @@ loadChildren: () => import('src/app/part/part.module').then(pa => pa.PartModule)
 {path:'home',component:HomeComponent},
 {path:'login',component:LoginComponent},
 {path:'',component:LoginComponent},
-{path:'logout',component:LogoutComponent}
+{path:'logout',component:LogoutComponent},
+{path:'unothorizeerror',component:AutherrorComponent}
 
 ];
 

@@ -8,27 +8,33 @@
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
+      <!-- <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/shipmenttype']" (click)="show('shipmenttypeuser')">shipmenttype</span></a>
+      </li> -->
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/shipmenttype']">shipmenttype</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect><span (click)="verifyShipmentRole('shipmenttypeuser')">shipmenttype</span></a>
       </li>
+      <!-- <li class="nav-item ">
+        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/uom']" (click)="verifyRole('uomuser')">uom</span></a>
+      </li> -->
       <li class="nav-item ">
-        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/uom']">uom</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect><span (click)="verifyUomRole('uomuser')">uom</span></a>
+      </li>
+      <!-- <button (click)="onSave($event)">Save</button> -->
+      <li class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/whuser']" (click)="show('whuseruser')">whuser</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/whuser']">whuser</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/ordermethod']" (click)="show('ordermethoduser')">ordermethod</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/ordermethod']">ordermethod</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/part']" (click)="show('partuser')">part</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/part']">part</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/grn']">grn</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect><span (click)="verifyGrnRole('grnuser')">grn</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/purchaseorder']">purchaseorder</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect><span [routerLink]="['/purchaseorder']" (click)="show('purchaseorderuser')">purchaseorder</span></a>
       </li>
 
       <!-- Dropdown -->
@@ -55,7 +61,7 @@
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt=""
             class="img-fluid rounded-circle z-depth-0"></a>
-        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu" id="account">
           <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
           <a class="dropdown-item waves-light" mdbWavesEffect *ngIf="loginService.isUserLoggedIn()" routerLink="/logout">Log out</a>
       
@@ -70,7 +76,7 @@
 <br>
 <br>
 
-<div class="container" id="custom-div" [hidden]="!isShow">
+<div class="container" id="home-div" [hidden]="!isShow">
   <div class="form-group row">
     <div class="col-2"></div>
     <div class="col-7">

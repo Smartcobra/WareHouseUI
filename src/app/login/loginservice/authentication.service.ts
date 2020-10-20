@@ -40,7 +40,6 @@ export class AuthenticationService {
     };
     console.log("user name"+username)
     console.log("password"+password);
-    //http://localhost:8762/warehouse/u/user/login
     return this.httpClient.post<any>('http://localhost:8762/user/login',{username,password},httpOptions).pipe(
     map(
        userData => {

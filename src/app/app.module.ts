@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './login/logout/logout.component';
 import {HtppInterceptorService} from './login/loginservice/htpp-interceptor.service';
+import { AutherrorComponent } from './autherror/autherror.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {HtppInterceptorService} from './login/loginservice/htpp-interceptor.serv
     AppComponent,
     HomeComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    AutherrorComponent
   ],
   imports: [
     BrowserModule,
